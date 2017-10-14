@@ -54,10 +54,8 @@ public class IdleChanger : MonoBehaviour
 		if (anim.GetBool ("Next")) {
 			// 現在のステートをチェックし、ステート名が違っていたらブーリアンをfalseに戻す
 			currentState = anim.GetCurrentAnimatorStateInfo (0);
-            //if (previousState.nameHash != currentState.nameHash) {    // obsolete
-            if (previousState.fullPathHash != currentState.fullPathHash)
-            {
-                anim.SetBool ("Next", false);
+			if (previousState.nameHash != currentState.nameHash) {
+				anim.SetBool ("Next", false);
 				previousState = currentState;				
 			}
 		}
@@ -66,10 +64,8 @@ public class IdleChanger : MonoBehaviour
 		if (anim.GetBool ("Back")) {
 			// 現在のステートをチェックし、ステート名が違っていたらブーリアンをfalseに戻す
 			currentState = anim.GetCurrentAnimatorStateInfo (0);
-            //if (previousState.nameHash != currentState.nameHash) {  // obsolete
-            if (previousState.fullPathHash != currentState.fullPathHash)
-            {
-                anim.SetBool ("Back", false);
+			if (previousState.nameHash != currentState.nameHash) {
+				anim.SetBool ("Back", false);
 				previousState = currentState;
 			}
 		}

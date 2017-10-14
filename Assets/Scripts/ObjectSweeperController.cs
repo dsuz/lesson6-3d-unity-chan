@@ -2,24 +2,24 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+/// <summary>
+/// プレイヤーを追いかけてオブジェクトを消し去る機能を持つ。
+/// </summary>
+[RequireComponent(typeof(Collider))]
 public class ObjectSweeperController : MonoBehaviour
 {
-    private void OnCollisionEnter(Collision collision)
+    [SerializeField] GameObject m_player;
+
+    /// <summary>プレイヤーからどれくらい離れて追いかけるか設定する</summary>
+    [SerializeField] float m_distance;
+
+    private void Update()
     {
-        if (collision.gameObject.tag == "CarTag" ||
-            collision.gameObject.tag == "TrafficConeTag" ||
-            collision.gameObject.tag == "CoinTag")
-        {
-            Debug.Log("Destroy " + collision.gameObject.name);
-            Destroy(collision.gameObject);
-        }
-        else
-        {
-            Debug.Log("Collide with " + collision.gameObject.name);
-        }
+        if (m_player)
+            transform.position = new Vector3(transform.position.x, transform.position.y, m_player.transform.position.z - m_distance);
     }
 
-    private void OnTriggerEnter(Collider other)
+    void OnTriggerEnter(Collider other)
     {
         if (other.gameObject.tag == "CarTag" ||
             other.gameObject.tag == "TrafficConeTag" ||
