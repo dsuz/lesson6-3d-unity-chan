@@ -31,6 +31,9 @@ public class UnityChanController : MonoBehaviour
     //右ボタン押下の判定（追加）
     private bool isRButtonDown = false;
 
+    /// <summary>Player is invincible if true</summary>
+    [SerializeField] bool m_godMode;
+
     // Use this for initialization
     void Start()
     {
@@ -95,9 +98,12 @@ public class UnityChanController : MonoBehaviour
         //障害物に衝突した場合（追加）
         if (other.gameObject.tag == "CarTag" || other.gameObject.tag == "TrafficConeTag")
         {
-            this.isEnd = true;
-            //stateTextにGAME OVERを表示（追加）
-            this.stateText.GetComponent<Text>().text = "GAME OVER";
+            if (!m_godMode)
+            {
+                this.isEnd = true;
+                //stateTextにGAME OVERを表示（追加）
+                this.stateText.GetComponent<Text>().text = "GAME OVER";
+            }
         }
 
         //ゴール地点に到達した場合（追加）
