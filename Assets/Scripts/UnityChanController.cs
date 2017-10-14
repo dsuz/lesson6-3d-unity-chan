@@ -31,7 +31,7 @@ public class UnityChanController : MonoBehaviour
     //右ボタン押下の判定（追加）
     private bool isRButtonDown = false;
 
-    /// <summary>Player is invincible if true</summary>
+    /// <summary>無敵モード</summary>
     [SerializeField] bool m_godMode;
 
     // Use this for initialization
