@@ -47,6 +47,26 @@ public class UnityChanController : MonoBehaviour
         this.stateText = GameObject.Find("GameResultText");
         //シーン中のscoreTextオブジェクトを取得（追加）
         this.scoreText = GameObject.Find("ScoreText");
+
+        // モバイルの時はカメラエフェクトを切る
+        UnityStandardAssets.ImageEffects.ScreenSpaceAmbientOcclusion ssao = Camera.main.GetComponent<UnityStandardAssets.ImageEffects.ScreenSpaceAmbientOcclusion>();
+        UnityStandardAssets.ImageEffects.DepthOfField dof = Camera.main.GetComponent<UnityStandardAssets.ImageEffects.DepthOfField>();
+        if (ssao)
+        {
+            if (Application.platform == RuntimePlatform.Android ||
+                Application.platform == RuntimePlatform.IPhonePlayer)
+                ssao.enabled = false;
+            else
+                ssao.enabled = true;
+        }
+        if (dof)
+        {
+            if (Application.platform == RuntimePlatform.Android ||
+                Application.platform == RuntimePlatform.IPhonePlayer)
+                dof.enabled = false;
+            else
+                dof.enabled = true;
+        }
     }
 
     // Update is called once per frame
