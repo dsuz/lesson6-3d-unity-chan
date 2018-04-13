@@ -3,22 +3,12 @@ using System.Collections.Generic;
 using UnityEngine;
 
 /// <summary>
-/// プレイヤーを追いかけてオブジェクトを消し去る機能を持つ。
+/// 触れたオブジェクト（アイテム）を消し去る機能を持つ。
+/// カメラの子オブジェクトとなるオブジェクトにスクリプトを追加することにより、プレイヤーを追従してオブジェクトを掃除させる。
 /// </summary>
 [RequireComponent(typeof(Collider))]
 public class ObjectSweeperController : MonoBehaviour
 {
-    [SerializeField] GameObject m_player;
-
-    /// <summary>プレイヤーからどれくらい離れて追いかけるか設定する</summary>
-    [SerializeField] float m_distance;
-
-    private void Update()
-    {
-        if (m_player)
-            transform.position = new Vector3(transform.position.x, transform.position.y, m_player.transform.position.z - m_distance);
-    }
-
     void OnTriggerEnter(Collider other)
     {
         if (other.gameObject.tag == "CarTag" ||

@@ -28,15 +28,21 @@ public class ItemGenerator2 : MonoBehaviour
     [SerializeField] GameObject m_player;
 
     /// <summary>最後にアイテムを生成した場所の Z 座標</summary>
-    private int m_latestGeneratedPosZ;
+    private float m_latestGeneratedPosZ;
+
+    private void Start()
+    {
+        // メンバ変数の初期化
+        m_latestGeneratedPosZ = m_player.transform.position.z;
+    }
 
     void Update()
     {
         // どの Z 座標にアイテムを生成するか決める
-        int posZ = Mathf.RoundToInt(m_player.transform.position.z) + m_prepareDistance;
+        float posZ = m_player.transform.position.z + m_prepareDistance;
 
         // 既にアイテムを生成した場所には生成しない。goalPos より手前に、m_interval ごとにアイテムを生成する
-        if (posZ != m_latestGeneratedPosZ && posZ % m_interval == 0 && posZ < goalPos)
+        if (posZ > m_latestGeneratedPosZ + m_interval && posZ < goalPos)
         {
             int dice = Random.Range(0, 10); // ２割の確率でコーンの列を生成する。８割はランダムアイテムを生成する。
             if (dice <= 1)
@@ -51,7 +57,7 @@ public class ItemGenerator2 : MonoBehaviour
     /// posZ で指定した Z 座標の位置に、ランダムなアイテムを生成する。
     /// </summary>
     /// <param name="posZ">アイテムを生成する Z 座標</param>
-    void GenerateRandomItem(int posZ)
+    void GenerateRandomItem(float posZ)
     {
         for (int i = -1; i < 2; i++)
         {
@@ -74,7 +80,7 @@ public class ItemGenerator2 : MonoBehaviour
     /// posZ で指定した Z 座標の位置に、コーンの列を生成する。
     /// </summary>
     /// <param name="posZ">コーンの列を生成する Z 座標</param>
-    void GenerateConeLine(int posZ)
+    void GenerateConeLine(float posZ)
     {
         for (float f = -1; f <= 1; f += 0.4f)
         {
