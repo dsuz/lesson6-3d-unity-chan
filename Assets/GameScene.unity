@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.29703987, g: 0.24627283, b: 0.23225415, a: 1}
+  m_IndirectSpecularColor: {r: 0.29715562, g: 0.24628273, b: 0.23252651, a: 1}
 --- !u!157 &3
 LightmapSettings:
   m_ObjectHideFlags: 0
@@ -670,7 +670,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: de9601c0b6338114cbc649e00abfbbba, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_distance: 7
 --- !u!23 &661665496
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -1321,7 +1320,6 @@ GameObject:
   m_Component:
   - component: {fileID: 1254224167}
   - component: {fileID: 1254224166}
-  - component: {fileID: 1254224168}
   m_Layer: 0
   m_Name: ItemGenerator
   m_TagString: Untagged
@@ -1335,7 +1333,7 @@ MonoBehaviour:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1254224165}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: a9179f1d8c61f30468837da023cc5be5, type: 3}
   m_Name: 
@@ -1356,23 +1354,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 8
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1254224168
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1254224165}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1f62fc68dfdcaa6479eadfda51cee238, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  carPrefab: {fileID: 1998592977226744, guid: c2a62f8447eef724fa20356cbf9afc26, type: 2}
-  coinPrefab: {fileID: 1149188868271724, guid: e5764a2c992b5474daef02263fba903d, type: 2}
-  conePrefab: {fileID: 1138328641156170, guid: f79638fd77e5dd041b426fcf2803d2ca, type: 2}
-  m_interval: 15
-  m_prepareDistance: 50
-  m_player: {fileID: 1346265677}
 --- !u!1001 &1346265676
 Prefab:
   m_ObjectHideFlags: 0

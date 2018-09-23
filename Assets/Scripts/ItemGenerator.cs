@@ -1,26 +1,41 @@
 ﻿using UnityEngine;
 using System.Collections;
 
+/// <summary>
+/// レッスンの発展課題を実装したクラス。実装のポイントは「レッスンの内容から、なるべく少ない変更で発展課題の条件を満たす」ようにした。
+/// </summary>
 public class ItemGenerator : MonoBehaviour
 {
+    //unitychan の参照を入れる
+    GameObject unitychan;
     //carPrefabを入れる
     public GameObject carPrefab;
     //coinPrefabを入れる
     public GameObject coinPrefab;
     //cornPrefabを入れる
     public GameObject conePrefab;
-    //スタート地点
-    private int startPos = -160;
+    //次にこの場所に unitychan が到達したらアイテムを生成する地点
+    private int nextItemGenerationPos = -160;
     //ゴール地点
     private int goalPos = 120;
     //アイテムを出すx方向の範囲
     private float posRange = 3.4f;
+    //unitychan のいる場所の何ｍ前方にアイテムを生成するかという距離
+    private int itemGenerationDistance = 50;
+    //アイテムを生成する間隔
+    private int itemGenerationInterval = 15;
 
-    // Use this for initialization
     void Start()
     {
+        unitychan = GameObject.Find("unitychan");
+    }
+
+    void Update()
+    {
+        float i = unitychan.transform.position.z + itemGenerationDistance;    // i は「アイテムを生成する z 座標」（本来ならばこのような変数の名前を i にはしないが、レッスンからの変更箇所を最小限に抑えるためにやむを得ず i をこのように利用している）
+
         //一定の距離ごとにアイテムを生成
-        for (int i = startPos; i < goalPos; i += 15)
+        if (unitychan.transform.position.z > nextItemGenerationPos && i < goalPos)
         {
             //どのアイテムを出すのかをランダムに設定
             int num = Random.Range(0, 10);
@@ -57,12 +72,7 @@ public class ItemGenerator : MonoBehaviour
                     }
                 }
             }
+            nextItemGenerationPos += itemGenerationInterval;    // アイテムを生成したら、次に生成するポイントに更新する
         }
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-
     }
 }
